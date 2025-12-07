@@ -1,0 +1,50 @@
+:root {
+  --bg: #f8f9fa;
+  --panel: #ffffff;
+  --text: #222;
+  --accent: #6a5acd;
+  --accent-soft: rgba(106, 90, 205, 0.12);
+  --radius: 12px;
+  --space: 1rem;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: var(--space);
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+input, textarea, button {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+  margin: 0.3rem 0 1rem;
+  font-size: 1rem;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button.delete-btn {
+  background: #d9534f;
+}
+
+details {
+  background: var(--panel);
+  padding: var(--space);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+}
