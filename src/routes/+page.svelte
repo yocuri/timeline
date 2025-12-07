@@ -17,15 +17,15 @@
 {#each data.posts as post}
   <article class="post">
     <p class="timestamp">
-      {new Date(post.created_at).toLocaleString('en-US', {
-        timeZone: 'America/Chicago',
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit'
-      })}
-    </p>
+  {#if browser}
+    {new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Chicago',
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    }).format(new Date(post.created_at))}
+  {/if}
+</p>
+
 
     <h2>{post.title}</h2>
 
