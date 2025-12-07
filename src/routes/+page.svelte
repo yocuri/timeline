@@ -1,5 +1,11 @@
 <script lang="ts">
+  import { marked } from "marked";
   export let data;
+
+  marked.setOptions({});
+
+
+  const md = (text: string) => marked.parse(text || "");
 </script>
 
 <h1>Lauren’s Timeline</h1>
@@ -11,13 +17,22 @@
 {#each data.posts as post}
   <article class="post">
     <p class="timestamp">
-      {new Date(post.created_at).toLocaleString()}
+      {new Date(post.created_at).toLocaleString('en-US', {
+        timeZone: 'America/Chicago',
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      })}
     </p>
 
     <h2>{post.title}</h2>
 
-    <p>{post.content}</p>
-
+    <!-- MARKDOWN CONTENT -->
+    <div class="content">
+  {@html md(post.content)}
+</div>
     {#if post.image_url}
       <img src={post.image_url} alt="post image" style="max-width: 300px;">
     {/if}
