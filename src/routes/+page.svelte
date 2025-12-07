@@ -1,5 +1,7 @@
 <script lang="ts">
   import { marked } from "marked";
+  import { browser } from '$app/environment';
+
   export let data;
 
   marked.setOptions({});
@@ -18,11 +20,17 @@
   <article class="post">
     <p class="timestamp">
   {#if browser}
-    {new Intl.DateTimeFormat('en-US', {
+    {new Date(post.created_at).toLocaleString('en-US', {
       timeZone: 'America/Chicago',
-      dateStyle: 'medium',
-      timeStyle: 'short'
-    }).format(new Date(post.created_at))}
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    })}
+  {:else}
+    <!-- fallback for SSR (optional) -->
+    {post.created_at}
   {/if}
 </p>
 
