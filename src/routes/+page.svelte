@@ -45,7 +45,7 @@ renderer.link = ({ href, title, tokens }) => {
 </script>
 <div id="headline">
   <a href="https://yocuri.live/">
-    <img src="/src/lib/assets/favicon.ico" alt="">
+    <img src="/favicon.ico" alt="">
   </a>
   <p>it's yocuri.live <i>!</i></p>
 </div>
