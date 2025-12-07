@@ -20,6 +20,7 @@ h1, h2, h3 {
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
+h1 {background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); font-family: georgia;}
 
 input, textarea, button {
   width: 100%;

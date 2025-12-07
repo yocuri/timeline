@@ -1,48 +1,59 @@
 <script lang="ts">
   import { marked } from "marked";
-  import { browser } from '$app/environment';
+  import { browser } from "$app/environment";
 
   export let data;
 
-  marked.setOptions({});
-
-
   const md = (text: string) => marked.parse(text || "");
+
+  function formatTimestamp(created_at: string): string {
+    // On the server, just show the raw string to avoid weird timezone behavior.
+    if (!browser) return created_at;
+
+    // D1 typically returns "YYYY-MM-DD HH:MM:SS" in UTC.
+    // We normalize it to ISO and explicitly mark it as UTC with "Z".
+    let iso = created_at;
+
+    if (!iso.endsWith("Z")) {
+      if (iso.includes("T")) {
+        // e.g. "2025-12-07T21:50:00"
+        iso = iso + "Z";
+      } else {
+        // e.g. "2025-12-07 21:50:00" -> "2025-12-07T21:50:00Z"
+        iso = iso.replace(" ", "T") + "Z";
+      }
+    }
+
+    const date = new Date(iso);
+
+    return date.toLocaleString("en-US", {
+      // your browser's local timezone (America/Chicago for you)
+      dateStyle: "medium",
+      timeStyle: "short"
+    });
+  }
 </script>
 
-<h1>Lauren’s Timeline</h1>
+<h1>it's yocuri.live <i>!</i></h1>
 
 {#if data.posts.length === 0}
-  <p>No posts yet… but soon 😌</p>
+  <p>Development zone (let's get connected to Cloudflare!</p>
 {/if}
 
 {#each data.posts as post}
   <article class="post">
     <p class="timestamp">
-  {#if browser}
-    {new Date(post.created_at).toLocaleString('en-US', {
-      timeZone: 'America/Chicago',
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit'
-    })}
-  {:else}
-    <!-- fallback for SSR (optional) -->
-    {post.created_at}
-  {/if}
-</p>
-
+      {formatTimestamp(post.created_at)}
+    </p>
 
     <h2>{post.title}</h2>
 
-    <!-- MARKDOWN CONTENT -->
     <div class="content">
-  {@html md(post.content)}
-</div>
+      {@html md(post.content)}
+    </div>
+
     {#if post.image_url}
-      <img src={post.image_url} alt="post image" style="max-width: 300px;">
+      <img src={post.image_url} alt="post image" style="max-width: 300px;" />
     {/if}
 
     <hr />

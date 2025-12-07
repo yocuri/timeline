@@ -1,6 +1,7 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ platform }) {
-  const db = platform.env.cf_timeline;
+  const db = platform?.env?.cf_timeline;
+
 
   const { results } = await db
     .prepare(
@@ -16,7 +17,8 @@ export async function load({ platform }) {
 /** @type {import('./$types').Actions} */
 export const actions = {
   update: async ({ platform, request }) => {
-    const db = platform.env.cf_timeline;
+    const db = platform?.env?.cf_timeline;
+
 
     const form = await request.formData();
     const id = form.get("id");
@@ -39,7 +41,8 @@ export const actions = {
   },
 
   delete: async ({ platform, request }) => {
-    const db = platform.env.cf_timeline;
+    const db = platform?.env?.cf_timeline;
+
 
     const form = await request.formData();
     const id = form.get("id");

@@ -1,6 +1,7 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ platform }) {
-  const db = platform.env.cf_timeline;
+  const db = platform?.env?.cf_timeline;
+
 
   const { results } = await db
     .prepare(

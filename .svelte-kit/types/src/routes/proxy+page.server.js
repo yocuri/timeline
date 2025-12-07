@@ -1,7 +1,8 @@
 // @ts-nocheck
 /** @param {Parameters<import('./$types').PageServerLoad>[0]} event */
 export async function load({ platform }) {
-  const db = platform.env.cf_timeline;
+  const db = platform?.env?.cf_timeline;
+
 
   const { results } = await db
     .prepare(
