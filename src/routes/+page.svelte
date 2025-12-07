@@ -43,9 +43,15 @@ renderer.link = ({ href, title, tokens }) => {
     });
   }
 </script>
+<div id="headline">
+  <a href="https://yocuri.live/">
+    <img src="/src/lib/assets/favicon.ico" alt="">
+  </a>
+  <p>it's yocuri.live <i>!</i></p>
+</div>
 
-<div id="headline">it's yocuri.live <i>!</i></div>
-<div style="padding-top:30px;"> </div>
+<div style="padding-top: 80px;"></div>
+
 {#if data.posts.length === 0}
   <p>Development zone (let's get connected to Cloudflare!)
   </p>
@@ -53,20 +59,15 @@ renderer.link = ({ href, title, tokens }) => {
 
 {#each data.posts as post}
   <article class="post">
-    <p class="timestamp">
-      {formatTimestamp(post.created_at)}
-    </p>
-
     <h2>{post.title}</h2>
-
     <div class="content">
       {@html md(post.content)}
     </div>
-
     {#if post.image_url}
-      <img src={post.image_url} alt=" " style="max-width: 300px;" />
+      <center><img src={post.image_url} alt=" " style="max-width: 300px;" /></center>
     {/if}
-
-    <hr />
+    <p class="timestamp">
+      {formatTimestamp(post.created_at)}
+    </p>
   </article>
 {/each}
