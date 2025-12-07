@@ -20,7 +20,15 @@ h1, h2, h3 {
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
-h1 {background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); font-family: georgia;}
+h1 {
+  display: inline-block; 
+  color: rgba(255, 255, 255, 1); 
+  background-image: linear-gradient(to top, #a0acda, #5663cb, #423db0, #1c104e); 
+  font-family: georgia; 
+  letter-spacing:5px; 
+  padding: 30px 100px 30px 30px;
+  text-shadow: 4px 4px rgba(0, 0, 0, 0.5);
+}
 
 input, textarea, button {
   width: 100%;
@@ -75,7 +83,7 @@ details {
   }
 }
 .content h1, .content h2, .content h3 {
-  margin-top: 1.2rem;
+  margin-top: 1.2rem; background-image: none;
 }
 
 .content p {

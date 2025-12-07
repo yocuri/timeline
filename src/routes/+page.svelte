@@ -3,7 +3,20 @@
   import { browser } from "$app/environment";
 
   export let data;
+  // CUSTOM LINK RENDERER → forces target="_blank"
+  const renderer = new marked.Renderer();
 
+renderer.link = ({ href, title, tokens }) => {
+  // tokens → markdown child tokens → convert back to HTML
+  const text = tokens ? marked.parser(tokens) : href;
+
+  const t = title ? ` title="${title}"` : "";
+
+  return `<a href="${href}"${t} target="_blank" rel="noopener noreferrer">${text}</a>`;
+};
+
+
+  marked.setOptions({ renderer });
   const md = (text: string) => marked.parse(text || "");
 
   function formatTimestamp(created_at: string): string {
@@ -53,7 +66,7 @@
     </div>
 
     {#if post.image_url}
-      <img src={post.image_url} alt="post image" style="max-width: 300px;" />
+      <img src={post.image_url} alt=" " style="max-width: 300px;" />
     {/if}
 
     <hr />
