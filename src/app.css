@@ -33,6 +33,15 @@ h1, h2, h3 {
   padding: 12px 0px 10px 30px;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
+/* Post container */
+.post {
+  background: var(--panel);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius);
+  padding: var(--space);
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
 
 input, textarea, button {
   width: 100%;
@@ -71,7 +80,11 @@ details {
     --accent: #9f8cff;
     --accent-soft: rgba(159, 140, 255, 0.15);
   }
-
+.post {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  }
   input, textarea, button {
     background: #222;
     border: 1px solid #444;
@@ -119,4 +132,9 @@ details {
   padding: 2px 4px;
   border-radius: 4px;
   font-family: monospace;
+}
+.post:hover {
+  border-color: var(--accent-soft);
+  transform: translateY(-2px);
+  transition: all 120ms ease;
 }
