@@ -4,5 +4,8 @@
 	],
 	"/admin": [
 		"src/routes/admin/+page.server.js"
+	],
+	"/api/posts": [
+		"src/routes/api/posts/+server.js"
 	]
 }
